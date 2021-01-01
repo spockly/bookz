@@ -33,16 +33,17 @@ while [[ $LOOP -eq 0 ]] ; do
 #Program instructs user to put inputs and records them as variables
 
   "No"|"no"|"N"|"n"|"NO" )
-	echo "Input Who, input @ to finish"
-	read -e -d @ Who
-	echo "Input What, input @ to finish"
-	read -e -d @ WHAT
-	echo "Input When, input @ to finish"
-	read -e -d @ WHEN
-	echo "Input Where, input @ to finish"
-	read -e -d @ WHERE
-	echo "Input Why, input @ to finish"
-	read -e -d @ WHY
+	echo "Input Who, CTRl-D to finish"
+	#read -e -d @ WHO
+	WHO=$(</dev/stdin)
+	echo "Input What, CTRl-D to finish"
+	WHAT=$(</dev/stdin)
+	echo "Input When, CTRl-D to finish"
+	WHEN=$(</dev/stdin)
+	echo "Input Where, CTRl-D to finish"
+	WHERE=$(</dev/stdin)
+	echo "Input Why, CTRl-D to finish"
+	WHY=$(</dev/stdin)
 	LOOP=1
 	SELECTOR=TWO
 	;;
@@ -93,7 +94,7 @@ case "$SELECTOR" in
 	
 
 	done
-	tar -r --file=./5Ws_$DATE.tar.gz ./5Ws_$DATE.txt 
+	tar -r --file=./5Ws_$DATE.tar.gz ./5Ws_$DATE.txt
 	gpg -r USERGUY -e ./5Ws_$DATE.tar.gz
 	shred -u ./5Ws_$DATE.tar.gz
 	shred -u ./5Ws_$DATE.txt
